@@ -3,7 +3,7 @@ const searchButton = document.getElementById("search-btn");
 const movieContainer = document.getElementById("movie-container");
 const moviePoster = document.getElementById("movie-poster");
 const movieDetails = document.getElementById("movie-details");
-const similarMovieList = document.getElementById("similar-movie-list");
+const resultSection = document.getElementById("result-section");
 
 const apiKey = "d1396cd0";
 
@@ -31,6 +31,13 @@ async function searchMovie(movieName) {
         const data = await response.json();
 
         console.log(data);
+        if (data.Response === "False") {
+            resultSection.classList.add("hidden");
+            alert(data.Error);
+            return;
+        }
+
+        resultSection.classList.remove("hidden");
 
         displayMovie(data);
 
@@ -45,18 +52,18 @@ async function searchMovie(movieName) {
 
 
 
-function displayMovie(data){
-const poster =
-    data.Poster !== "N/A"
-        ? data.Poster
-        : "https://via.placeholder.com/300x450?text=No+Image";
+function displayMovie(data) {
+    const poster =
+        data.Poster !== "N/A"
+            ? data.Poster
+            : "https://via.placeholder.com/300x450?text=No+Image";
 
-moviePoster.innerHTML = `
+    moviePoster.innerHTML = `
     <img src="${poster}" alt="${data.Title}">
 `;
 
 
-movieDetails.innerHTML = `
+    movieDetails.innerHTML = `
     <h2>${data.Title}</h2>
 
     <p>⭐ <strong>IMDb:</strong> ${data.imdbRating}/10</p>
@@ -72,5 +79,17 @@ movieDetails.innerHTML = `
     <p>👨‍🎤 <strong>Actors:</strong> ${data.Actors}</p>
 
     <p>🌍 <strong>Country:</strong> ${data.Country}</p>
+
+     <div class="buttons">
+
+        <a href="https://www.imdb.com/title/${data.imdbID}" target="_blank">
+            <button>IMDb</button>
+        </a>
+
+        <button id="favorite-btn">
+            ❤ Favorite
+        </button>
+
+    </div>
 `;
 }
