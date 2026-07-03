@@ -30,11 +30,12 @@ async function searchMovie(movieName) {
 
         const data = await response.json();
 
-        console.log(data);
         if (data.Response === "False") {
-            resultSection.classList.add("hidden");
-            alert(data.Error);
+
+            showError(movieName);
+
             return;
+
         }
 
         resultSection.classList.remove("hidden");
@@ -92,4 +93,19 @@ function displayMovie(data) {
 
     </div>
 `;
+}
+function showError(movieName) {
+
+    resultSection.classList.remove("hidden");
+
+    moviePoster.innerHTML = "";
+
+    movieDetails.innerHTML = `
+        <div class="error-box">
+            <h1>😕</h1>
+            <h2>Movie Not Found</h2>
+            <p>Sorry! We couldn't find <strong>"${movieName}"</strong>.</p>
+            <p>Please try another movie title.</p>
+        </div>
+    `;
 }
