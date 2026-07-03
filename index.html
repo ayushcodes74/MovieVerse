@@ -5,11 +5,15 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MovieVerse</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+    <div class="blur blur1"></div>
+    <div class="blur blur2"></div>
+    <div class="blur blur3"></div>
     <header>
-        <h1>🎬 MovieVerse</h1>
+        <h1> MovieVerse</h1>
         <p>Discover movies, ratings, cast, and more in seconds.</p>
     </header>
     <section class="search-section">
@@ -21,13 +25,13 @@
         </button>
 
     </section>
-    <div class="contents">
+    <main>
         <h2>Search Results</h2>
         <div class="movie-container" id="movie-container">
-            <div class="movie-poster">
+            <div class="movie-poster" id="movie-poster">
 
             </div>
-            <div class="movie-details">
+            <div class="movie-details" id="movie-details">
 
             </div>
             <div class="buttons">
@@ -46,11 +50,14 @@
 
 
         </div>
-        <footer>
 
-            Made with ❤️ by Ayush Raj
+    </main>
+    <footer>
 
-        </footer>
+        Made with ❤️ by Ayush Raj
+
+    </footer>
+    <script src="script.js"></script>
 </body>
 
 </html>
